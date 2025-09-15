@@ -1,0 +1,36 @@
+﻿CREATE DATABASE CafeDB;
+
+  
+
+ Registration and Login
+
+ create table usertab id, username, password 
+
+    id is identity  yes
+
+
+
+ For admin login
+
+ create table in sql admintab
+
+
+  id identity yes
+
+  username nchar
+
+  password nchar
+
+
+   
+
+ If IDENTITY jumps and
+If you want your Id to continue correctly (e.g., after deleting test data), just reseed once in sql query
+
+
+DBCC CHECKIDENT ('Students', RESEED, 0); [Next insert will create 1]
+
+DBCC CHECKIDENT ('Students', RESEED, 2); [Next insert will create 3]
+DBCC CHECKIDENT ('Books', RESEED, 4);    [Next insert will create 5]
+DBCC CHECKIDENT ('Borrowings', RESEED, 3);  [Next insert will create 4]
+DBCC CHECKIDENT ('Librarians', RESEED, 2);  [Next insert will create 3]
