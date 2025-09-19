@@ -1,36 +1,66 @@
 ﻿CREATE DATABASE CafeDB;
 
   
+Registration and Login
 
- Registration and Login
+create table usertab id, username, password 
 
- create table usertab id, username, password 
-
-    id is identity  yes
-
+id is identity  yes
 
 
- For admin login
+For admin login
 
- create table in sql admintab
-
-
-  id identity yes
-
-  username nchar
-
-  password nchar
+create table in sql admintab
 
 
-   
+id identity yes
 
- If IDENTITY jumps and
+username nchar
+
+password nchar
+
+
+User
+
+CREATE TABLE [dbo].[usertab] (
+    [id]       INT        IDENTITY (1, 1) NOT NULL,
+    [username] NCHAR (10) NULL,
+    [password] NCHAR (10) NULL,
+    CONSTRAINT [PK_usertab] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+Admin
+
+CREATE TABLE [dbo].[admintab] (
+    [id]       INT        IDENTITY (1, 1) NOT NULL,
+    [username] NCHAR (10) NULL,
+    [password] NCHAR (10) NULL,
+    CONSTRAINT [PK_admintab] PRIMARY KEY CLUSTERED ([id] ASC)
+);
+
+
+Customer
+
+CREATE TABLE [dbo].[customers] (
+    [CustomerId]   INT          NOT NULL,
+    [CustomerName] VARCHAR (50) NULL,
+    [Email]        VARCHAR (50) NULL,
+    [Phone]        VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([CustomerId] ASC)
+);
+
+
+Product
+
+
+
+If IDENTITY jumps and
 If you want your Id to continue correctly (e.g., after deleting test data), just reseed once in sql query
 
 
-DBCC CHECKIDENT ('Students', RESEED, 0); [Next insert will create 1]
+DBCC CHECKIDENT ('Customers', RESEED, 0); [Next insert will create 1]
 
-DBCC CHECKIDENT ('Students', RESEED, 2); [Next insert will create 3]
-DBCC CHECKIDENT ('Books', RESEED, 4);    [Next insert will create 5]
+DBCC CHECKIDENT ('Products', RESEED, 2); [Next insert will create 3]
+DBCC CHECKIDENT ('orderdetails', RESEED, 4);    [Next insert will create 5]
 DBCC CHECKIDENT ('Borrowings', RESEED, 3);  [Next insert will create 4]
 DBCC CHECKIDENT ('Librarians', RESEED, 2);  [Next insert will create 3]
