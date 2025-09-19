@@ -52,15 +52,65 @@ CREATE TABLE [dbo].[customers] (
 
 Product
 
+CREATE TABLE [dbo].[products] (
+    [ProductId]   INT          NOT NULL,
+    [ProductName] VARCHAR (50) NULL,
+    [Category]    VARCHAR (50) NULL,
+    [Price]       INT          NULL,
+    PRIMARY KEY CLUSTERED ([ProductId] ASC)
+);
+
+
+Order
+
+CREATE TABLE [dbo].[orders] (
+    [CustomerName] VARCHAR (50) NOT NULL,
+    [ItemName]     VARCHAR (50) NULL,
+    [Quantity]     INT          NULL,
+    [OrderDate]    DATE         NULL
+);
+
+
+OrderDetail
+
+CREATE TABLE [dbo].[orderdetails] (
+    [ODId]         INT          NOT NULL,
+    [CustomerName] VARCHAR (50) NULL,
+    [OrderName]    VARCHAR (50) NULL,
+    [Quantity]     INT          NULL,
+    [OrderDate]    DATETIME     NULL,
+    [Amount]       INT          NULL,
+    PRIMARY KEY CLUSTERED ([ODId] ASC)
+);
+
+
+Payment
+
+CREATE TABLE [dbo].[payments] (
+    [PId]           INT          NOT NULL,
+    [CustomerName]  VARCHAR (50) NULL,
+    [PaymentMethod] VARCHAR (50) NULL,
+    [Amount]        INT          NULL,
+    PRIMARY KEY CLUSTERED ([PId] ASC)
+);
+
+
+Waiter
+
+CREATE TABLE [dbo].[waiters] (
+    [WaiterId] INT          NOT NULL,
+    [Name]     VARCHAR (50) NULL,
+    [Age]      INT          NULL,
+    [Phone]    VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([WaiterId] ASC)
+);
+
 
 
 If IDENTITY jumps and
 If you want your Id to continue correctly (e.g., after deleting test data), just reseed once in sql query
-
-
-DBCC CHECKIDENT ('Customers', RESEED, 0); [Next insert will create 1]
-
-DBCC CHECKIDENT ('Products', RESEED, 2); [Next insert will create 3]
+DBCC CHECKIDENT ('customers', RESEED, 0); [Next insert will create 1]
+DBCC CHECKIDENT ('products', RESEED, 2); [Next insert will create 3]
 DBCC CHECKIDENT ('orderdetails', RESEED, 4);    [Next insert will create 5]
-DBCC CHECKIDENT ('Borrowings', RESEED, 3);  [Next insert will create 4]
-DBCC CHECKIDENT ('Librarians', RESEED, 2);  [Next insert will create 3]
+DBCC CHECKIDENT ('customers', RESEED, 3);  [Next insert will create 4]
+DBCC CHECKIDENT ('payments', RESEED, 2);  [Next insert will create 3]
